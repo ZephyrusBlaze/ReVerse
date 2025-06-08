@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧬 ReVerse: Environmental Karma Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Audiowide&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script type="module">
+        import { GoogleGenerativeAI } from "https://esm.sh/@google/generative-ai";
+        const genAI = new GoogleGenerativeAI("GEMINI-API-KEY");
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+        window.geminiModel = model;
+    </script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🧬 ReVerse</h1>
+            <p>AI-Powered Environmental Karma Prediction</p>
+            <p style="font-size: 0.9rem; margin-top: 10px;">Simulate Earth's future through your daily actions</p>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('ripples')">Time Ripples</div>
+            <div class="tab" onclick="switchTab('karma')">Karma Engine</div>
+            <div class="tab" onclick="switchTab('timeline')">Future Timeline</div>
+            <div class="tab" onclick="switchTab('achievements')">Eco Achievements</div>
+            <div class="tab" onclick="switchTab('echoes')">Global Echoes</div>
+        </div>
+
+        <div id="ripples" class="tab-content active">
+            <h2 style="text-align: center; margin-bottom: 30px; font-family: 'Audiowide', cursive;">🔮 Time Ripples:
+                Eco-Future Simulation</h2>
+
+            <div class="action-form">
+                <div class="form-group">
+                    <label for="action-input">Log Your Environmental Action:</label>
+                    <textarea id="action-input"
+                        placeholder="e.g., Used bicycle instead of car, Threw plastic bottle in trash, Planted a tree..."
+                        rows="3"></textarea>
+                </div>
+                <button class="btn" onclick="logAction()">Generate Future Vision</button>
+            </div>
+
+            <div id="future-display"></div>
+
+            <div id="recent-entries">
+                <h3 style="margin-bottom: 20px;">Recent Entries:</h3>
+                <button class="clear-all-btn" onclick="clearAllEntries()">Clear All Entries</button>
+            </div>
+        </div>
+
+        <div id="karma" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 30px; font-family: 'Audiowide', cursive;">📈 Karma Engine:
+                Your Impact Score</h2>
+
+            <div class="karma-display">
+                <div class="karma-score positive" id="total-karma">+0</div>
+                <p>Total Environmental Karma</p>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="karmaChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        <div id="echoes" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 30px; font-family: 'Audiowide', cursive;">🌐 Global Echoes:
+                Collective Future</h2>
+
+            <button class="btn" onclick="generateGlobalEcho()" style="margin-bottom: 30px;">Generate Global
+                Vision</button>
+
+            <div id="global-display"></div>
+        </div>
+
+        <div id="achievements" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 30px; font-family: 'Audiowide', cursive;">🏆 Eco Achievements:
+                Your Impact Legacy</h2>
+
+            <div class="achievement-grid" id="achievements-grid"></div>
+        </div>
+
+        <div id="timeline" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 30px; font-family: 'Audiowide', cursive;">⏳ Future Timeline:
+                Your Environmental Journey</h2>
+
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div id="timeline-entries"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
